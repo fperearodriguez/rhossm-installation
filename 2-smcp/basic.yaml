@@ -7,8 +7,24 @@ spec:
   addons:
     grafana:
       enabled: true
+    jaeger:
+      name: jaeger
+      install:
+        storage:
+          type: Memory # or Elasticsearch
+          memory:
+            maxTraces: 100000
+        ingress: # jaeger ingress configuration
+          enabled: true
     kiali:
       enabled: true
+      name: kiali
+      install: # install kiali CR if not present
+        dashboard:
+          viewOnly: false
+          enableGrafana: true
+          enableTracing: true
+          enablePrometheus: true
     prometheus:
       enabled: true
   gateways:
