@@ -130,6 +130,21 @@ spec:
       limits:
         cpu: 500m
         memory: 128Mi
+  runtime:
+    components:
+      pilot:
+        container:
+          resources:
+            limits:
+              cpu: "2"
+              memory: 4Gi
+            requests:
+              cpu: 100m
+              memory: 128Mi
+        deployment:
+          autoScaling:
+            enabled: false
+          replicas: 3
   security:
     controlPlane:
       mtls: true
