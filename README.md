@@ -81,3 +81,13 @@ oc apply -f 2-smcp/smm-2.yaml
 servicemeshmember.maistra.io/default created
 ```
 
+## Adding a new OSSM to the OpenShift cluster
+Installing a new OSSM in the same OpenShift cluster
+```
+oc apply -f 2-smcp/basic-pre.yaml
+```
+
+Create the SMMR
+```
+oc apply -f 2-/smmr-pre.yaml
+```
