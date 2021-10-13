@@ -94,5 +94,5 @@ oc apply -f 2-smcp/basic-pre.yaml
 
 Create the SMMR
 ```
-oc apply -f 2-/smmr-pre.yaml
+oc apply -f 2-smcp/smmr-pre.yaml
 ```
