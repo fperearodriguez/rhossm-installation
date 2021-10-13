@@ -5,4 +5,4 @@ metadata:
   namespace: istio-system-pre
 spec:
   members:
-    - bookinfo
+    - grpc-server
