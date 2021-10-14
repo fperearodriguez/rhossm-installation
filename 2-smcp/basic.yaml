@@ -57,7 +57,7 @@ spec:
               gatewayType: egress
               istio: default-egress
           ports:
-          - name: http2-secure
+          - name: https
             port: 443
             targetPort: 8443
           - name: https-8443
@@ -66,6 +66,9 @@ spec:
           - name: https-9443
             port: 9443
             targetPort: 8445
+          - name: http2-secure
+            port: 9444
+            targetPort: 9444
           - name: http2
             port: 80
             targetPort: 8080
