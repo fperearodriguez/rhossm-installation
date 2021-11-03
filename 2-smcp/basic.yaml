@@ -19,64 +19,51 @@ spec:
     kiali:
       enabled: true
       name: kiali
-      install: # install kiali CR if not present
-        dashboard:
-          viewOnly: false
-          enableGrafana: true
-          enableTracing: true
-          enablePrometheus: true
     prometheus:
       enabled: true
   gateways:
-    additionalEgress:
-      default-egress:
-        enabled: true
-        namespace: istio-system
-        runtime:
-          container:
-            resources:
-              limits:
-                cpu: 600m
-                memory: 256Mi
-              requests:
-                cpu: 100m
-                memory: 128Mi
-          deployment:
-            autoScaling:
-              enabled: false
-            replicas: 1
-            strategy:
-              rollingUpdate:
-                maxSurge: "1"
-                maxUnavailable: "0"
-              type: RollingUpdate
-        service:
-          metadata:
-            labels:
-              app: default-egress
-              gatewayType: egress
-              istio: default-egress
-          ports:
-          - name: https
-            port: 443
-            targetPort: 8443
-          - name: https-8443
-            port: 8443
-            targetPort: 8444
-          - name: https-9443
-            port: 9443
-            targetPort: 8445
-          - name: http2-secure
-            port: 9444
-            targetPort: 9444
-          - name: http2
-            port: 80
-            targetPort: 8080
-          - name: status-port
-            port: 15020
     egress:
-      enabled: false
-      service: {}
+      enabled: true
+      namespace: istio-system
+      runtime:
+        container:
+          resources:
+            limits:
+              cpu: 600m
+              memory: 256Mi
+            requests:
+              cpu: 100m
+              memory: 128Mi
+        deployment:
+          autoScaling:
+            enabled: false
+          replicas: 1
+          strategy:
+            rollingUpdate:
+              maxSurge: "1"
+              maxUnavailable: "0"
+            type: RollingUpdate
+      service:
+        metadata:
+          labels:
+            gatewayType: egress
+            istio: egressgateway
+        ports:
+        - name: https
+          port: 443
+          targetPort: 8443
+        - name: http2-secure
+          port: 9443
+          targetPort: 9443
+        - name: tcp-9444
+          port: 9444
+          targetPort: 9444
+        - name: http2
+          port: 80
+          targetPort: 8080
+        - name: status-port
+          port: 15020
+          targetPort: 15020
     ingress:
       runtime:
         container:
