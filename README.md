@@ -7,6 +7,7 @@ Basic Openshift Service Mesh 2.x installation and configuration in a clean OCP p
  - Cluster admin role access for installing the Openshift Service Mesh.
  - OC cli installed.
 
+# OSSM 2.0.X
 
 ## Installation and basic configuration
 
@@ -14,17 +15,18 @@ Installing the operators:
 
 Jaeger
 ```
-oc apply -f 1-packagemanifests/jaeger-operator/subscription.yaml
+oc apply -f 1-packagemanifests/1-jaeger-operator/subscription.yaml
 ```
 
 Kiali
 ```
-oc apply -f 1-packagemanifests/kiali-operator/subscription.yaml
+oc apply -f 1-packagemanifests/2-kiali-operator/subscription.yaml
 ```
 
 OSSM
 ```
-oc apply -f 1-packagemanifests/ossm-operator/subscription.yaml
+#For OSSM v2.0.8 oc apply -f 1-packagemanifests/3-ossm-operator/subscription-v2.0.8.yaml
+#For OSSM v2.1.0 oc apply -f 1-packagemanifests/3-ossm-operator/subscription-v2.1.0.yaml
 ```
 
 Now, the operators are installed and it is time to install the Service Mesh Control Plane with the configuration desired. For this, set the [SMCP Configuration](./2-smcp/basic.yaml) file up with your preferences and install it.
@@ -95,4 +97,3 @@ oc apply -f 2-smcp/basic-pre.yaml
 Create the SMMR
 ```
 oc apply -f 2-smcp/smmr-pre.yaml
-```

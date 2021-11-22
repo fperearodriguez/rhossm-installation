@@ -55,9 +55,6 @@ spec:
         - name: http2-secure
           port: 9443
           targetPort: 9443
-        - name: tcp-9444
-          port: 9444
-          targetPort: 9444
         - name: http2
           port: 80
           targetPort: 8080
